@@ -20,7 +20,11 @@ const App = () => {
   const [title, setTitle] = useState("");
   const [category, setCategory] = useState("Generale");
   const [links, setLinks] = useState([]);
-  const [categories, setCategories] = useState(["Generale", "Lavoro", "Personale"]);
+  const [categories, setCategories] = useState([
+    "Generale",
+    "Lavoro",
+    "Personale",
+  ]);
   const [editingIndex, setEditingIndex] = useState(-1);
   const [editingText, setEditingText] = useState("");
 
@@ -61,7 +65,10 @@ const App = () => {
 
   const saveCategories = async (categoriesToSave) => {
     try {
-      await AsyncStorage.setItem("@categories", JSON.stringify(categoriesToSave));
+      await AsyncStorage.setItem(
+        "@categories",
+        JSON.stringify(categoriesToSave)
+      );
     } catch (error) {
       console.error("Errore durante il salvataggio delle categorie:", error);
     }
@@ -69,7 +76,10 @@ const App = () => {
 
   const addLink = () => {
     if (link.trim() === "" || title.trim() === "") {
-      Alert.alert("Campi Mancanti", "Per favore inserisci sia un titolo che un link.");
+      Alert.alert(
+        "Campi Mancanti",
+        "Per favore inserisci sia un titolo che un link."
+      );
       return;
     }
 
@@ -165,7 +175,10 @@ const App = () => {
         </Picker>
         <Button title="Aggiungi Link" onPress={addLink} color="#1e90ff" />
       </View>
-      <ScrollView style={styles.linkList} contentContainerStyle={{ paddingBottom: 20 }}>
+      <ScrollView
+        style={styles.linkList}
+        contentContainerStyle={{ paddingBottom: 20 }}
+      >
         {categories.map((cat, index) => (
           <View key={index} style={styles.categorySection}>
             <View style={styles.categoryHeaderContainer}>
@@ -189,7 +202,9 @@ const App = () => {
               ) : (
                 <>
                   <Text style={styles.categoryHeader}>{cat}</Text>
-                  <TouchableOpacity onPress={() => startEditingCategory(index, cat)}>
+                  <TouchableOpacity
+                    onPress={() => startEditingCategory(index, cat)}
+                  >
                     <Text style={styles.editButton}>Modifica</Text>
                   </TouchableOpacity>
                 </>
@@ -199,13 +214,23 @@ const App = () => {
               .filter((link) => link.category === cat)
               .map((item, idx) => (
                 <View key={idx} style={styles.linkItemContainer}>
-                  <TouchableOpacity onPress={() => openLink(item.url)} style={styles.linkContent}>
+                  <TouchableOpacity
+                    onPress={() => openLink(item.url)}
+                    style={styles.linkContent}
+                  >
                     <Text style={styles.linkTitle}>{item.title}</Text>
-                    <Text numberOfLines={1} ellipsizeMode="tail" style={styles.linkItem}>
+                    <Text
+                      numberOfLines={1}
+                      ellipsizeMode="tail"
+                      style={styles.linkItem}
+                    >
                       {item.url}
                     </Text>
                   </TouchableOpacity>
-                  <TouchableOpacity onPress={() => deleteLink(item.id)} style={styles.deleteButton}>
+                  <TouchableOpacity
+                    onPress={() => deleteLink(item.id)}
+                    style={styles.deleteButton}
+                  >
                     <Text style={styles.deleteButtonText}>Elimina</Text>
                   </TouchableOpacity>
                 </View>
