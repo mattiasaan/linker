@@ -14,6 +14,7 @@ import {
 } from "react-native";
 import { Picker } from "@react-native-picker/picker";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { StatusBar } from "react-native";
 
 const App = () => {
   const [link, setLink] = useState("");
@@ -143,6 +144,8 @@ const App = () => {
   };
 
   return (
+    <>
+    <StatusBar barStyle="light-content" backgroundColor="#121212" />
     <View style={styles.container}>
       <SafeAreaView style={styles.header}>
         <Text style={styles.headerText}>Linker</Text>
@@ -239,6 +242,7 @@ const App = () => {
         ))}
       </ScrollView>
     </View>
+    </>
   );
 };
 
